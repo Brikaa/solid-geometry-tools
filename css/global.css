@@ -1,0 +1,11 @@
+html, body {
+    --back-color: wheat;
+    --font-color: black;
+    font-family: 'Lato', sans-serif;
+}
+
+body {
+    text-align: center;
+    background: var(--back-color);
+    color: var(--font-color);
+}

@@ -1,66 +1,106 @@
 class VectorPlaneAreas {
-    #no_planes;
-    #no_vectors;
+    // States
+    #next_plane;
+    #next_vector;
+    #vector_inputs;
+    #plane_inputs;
+
     constructor(vector_div_id, plane_div_id) {
         this.vector_div = document.getElementById(vector_div_id);
-        this.plane_div = document.getElementById(plane_div_id)
-        this.#no_planes = 0;
-        this.#no_vectors = 0;
+        this.plane_div = document.getElementById(plane_div_id);
+        this.#next_plane = 0;
+        this.#next_vector = 0;
+        this.#vector_inputs = [];
+        this.#plane_inputs = [];
     }
+
+    #add_vector_inputs() {
+        this.#vector_inputs.push(
+            [
+                `x-vector${this.#next_vector}`,
+                `y-vector${this.#next_vector}`,
+                `z-vector${this.#next_vector}`
+            ].map((x) => document.getElementById(x))
+        );
+    }
+    #add_plane_inputs() {
+        this.#plane_inputs.push(
+            [
+                `x-plane${this.#next_plane}`,
+                `y-plane${this.#next_plane}`,
+                `z-plane${this.#next_plane}`,
+                `d-plane${this.#next_plane}`
+            ].map((x) => document.getElementById(x))
+        );
+    }
+
     add_vector() {
         Util.add_paragraph(
-            `V${this.#no_vectors + 1} =
+            `V<sub>${this.#next_vector + 1}</sub> =
             (<input name="x-vector" id="x-vector${
-                this.#no_vectors + 1
+                this.#next_vector
             }" class="number-input" type="number">,
             <input name="y-vector" id="y-vector${
-                this.#no_vectors + 1
+                this.#next_vector
             }" class="number-input" type="number">,
             <input name="z-vector" id="z-vector${
-                this.#no_vectors + 1
+                this.#next_vector
             }" class="number-input" type="number">)`,
             this.vector_div,
-            `vector${this.#no_vectors + 1}`
+            `vector${this.#next_vector}`
         );
-        ++this.#no_vectors;
+        this.#add_vector_inputs();
+        ++this.#next_vector;
     }
     add_plane() {
         Util.add_paragraph(
-            `P${this.#no_planes + 1}: <input type="number" name="x-plane" id="x-plane${
-                this.#no_planes + 1
+            `P<sub>${this.#next_plane + 1}</sub>: <input type="number" name="x-plane" id="x-plane${
+                this.#next_plane
             }" class="number-input"> x +
-            <input type="number" name="y-plane" id="x-plane${
-                this.#no_planes + 1
+            <input type="number" name="y-plane" id="y-plane${
+                this.#next_plane
             }" class="number-input"> y +
-            <input type="number" name="z-plane" id="y-plane${
-                this.#no_planes + 1
-            }" class="number-input"> z +
             <input type="number" name="z-plane" id="z-plane${
-                this.#no_planes + 1
+                this.#next_plane
+            }" class="number-input"> z +
+            <input type="number" name="d-plane" id="d-plane${
+                this.#next_plane
             }" class="number-input"> = 0`,
             this.plane_div,
-            `plane${this.#no_planes + 1}`
+            `plane${this.#next_plane}`
         );
-        ++this.#no_planes;
+        this.#add_plane_inputs();
+        ++this.#next_plane;
     }
     remove_vector() {
-        if (this.#no_vectors == 0) {
+        if (this.#next_vector === 0) {
             return;
         }
-        document.getElementById(`vector${this.#no_vectors}`).remove();
-        --this.#no_vectors;
+        document.getElementById(`vector${this.#next_vector - 1}`).remove();
+        this.#vector_inputs.pop();
+        --this.#next_vector;
     }
     remove_plane() {
-        if (this.#no_planes == 0) {
+        if (this.#next_plane === 0) {
             return;
         }
-        document.getElementById(`plane${this.#no_planes}`).remove();
-        --this.#no_planes;
+        document.getElementById(`plane${this.#next_plane - 1}`).remove();
+        this.#plane_inputs.pop();
+        --this.#next_plane;
     }
     clear() {
         this.vector_div.innerHTML = '';
         this.plane_div.innerHTML = '';
-        this.#no_planes = 0;
-        this.#no_vectors = 0;
+        this.#next_plane = 0;
+        this.#next_vector = 0;
+        this.#vector_inputs = [];
+        this.#plane_inputs = [];
+    }
+
+    get vectors() {
+        return Util.values_from_2d_inputs_array(this.#vector_inputs, true);
+    }
+    get planes() {
+        return Util.values_from_2d_inputs_array(this.#plane_inputs, true);
     }
 }

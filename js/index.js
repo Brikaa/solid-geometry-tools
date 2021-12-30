@@ -15,4 +15,9 @@
     document
         .getElementById('clear-button')
         .addEventListener('click', () => vector_plane_area.clear());
+    document
+        .getElementById('draw-button')
+        .addEventListener('click', () =>
+            console.log(vector_plane_area.vectors, vector_plane_area.planes)
+        );
 })();

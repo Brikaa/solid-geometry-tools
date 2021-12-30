@@ -18,3 +18,21 @@ body {
 .logo {
     height: 150px;
 }
+
+.control-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+    max-width: 500px;
+    margin: auto;
+}
+
+.primary-button {
+    background: none;
+    border: 1px solid var(--font-color);
+}
+
+.primary-button:hover {
+    background: var(--font-color);
+    color: var(--back-color);
+}

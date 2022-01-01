@@ -15,8 +15,8 @@ class Plotter {
         const unknown_component = remaining_components.splice(unknown_index, 1)[0];
         const unknown_component_coefficient = plane_copy.splice(unknown_index, 1)[0];
 
-        points[remaining_components[0]] = [0, 0, 10, 10, 0];
-        points[remaining_components[1]] = [0, 10, 10, 0, 0];
+        points[remaining_components[0]] = [0, 0, 10, 10];
+        points[remaining_components[1]] = [0, 10, 10, 0];
         points[unknown_component] = [];
 
         const no_points = points[remaining_components[0]].length;

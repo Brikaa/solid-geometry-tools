@@ -6,6 +6,7 @@ class Util {
         }
         paragraph.innerHTML = text;
         parent_element.appendChild(paragraph);
+        return paragraph;
     }
     static values_from_2d_inputs_array(inputs, only_numerical = false) {
         const final = [];

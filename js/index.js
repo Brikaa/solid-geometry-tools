@@ -22,6 +22,9 @@
         } catch (e) {
             if (e.cause === 'empty_vector_or_plane') {
                 alert(`Invalid vectors/planes`);
+            } else {
+                alert('An error has occurred while drawing');
+                console.log(e);
             }
         }
     });

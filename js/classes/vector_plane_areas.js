@@ -14,28 +14,8 @@ class VectorPlaneAreas {
         this.#plane_inputs = [];
     }
 
-    #add_vector_inputs() {
-        this.#vector_inputs.push(
-            [
-                `x-vector${this.#next_vector}`,
-                `y-vector${this.#next_vector}`,
-                `z-vector${this.#next_vector}`
-            ].map((x) => document.getElementById(x))
-        );
-    }
-    #add_plane_inputs() {
-        this.#plane_inputs.push(
-            [
-                `x-plane${this.#next_plane}`,
-                `y-plane${this.#next_plane}`,
-                `z-plane${this.#next_plane}`,
-                `d-plane${this.#next_plane}`
-            ].map((x) => document.getElementById(x))
-        );
-    }
-
     add_vector() {
-        Util.add_paragraph(
+        const paragraph = Util.add_paragraph(
             `V<sub>${this.#next_vector + 1}</sub> =
             (<input name="x-vector" id="x-vector${
                 this.#next_vector
@@ -49,11 +29,11 @@ class VectorPlaneAreas {
             this.vector_div,
             `vector${this.#next_vector}`
         );
-        this.#add_vector_inputs();
+        this.#vector_inputs.push(paragraph.getElementsByTagName('input'));
         ++this.#next_vector;
     }
     add_plane() {
-        Util.add_paragraph(
+        const paragraph = Util.add_paragraph(
             `P<sub>${this.#next_plane + 1}</sub>: <input type="number" name="x-plane" id="x-plane${
                 this.#next_plane
             }" class="number-input"> x +
@@ -69,7 +49,7 @@ class VectorPlaneAreas {
             this.plane_div,
             `plane${this.#next_plane}`
         );
-        this.#add_plane_inputs();
+        this.#plane_inputs.push(paragraph.getElementsByTagName('input'));
         ++this.#next_plane;
     }
     remove_vector() {

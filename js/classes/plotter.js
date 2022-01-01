@@ -4,20 +4,7 @@ class Plotter {
         this.#div = document.getElementById(canvas_id);
     }
     static #calculate_plane_points(plane) {
-        // ax + by + cz + d = 0
-        // TODO: improve algorithm for when any of the coefficients is zero
-        const [a, b, c, d] = plane;
-        const points = {
-            x: [0, 0, 10, 10],
-            y: [0, 10, 0, 10],
-            z: [],
-            type: 'mesh3d'
-        };
-        for (let i = 0; i < 4; ++i) {
-            points.z.push((-d - b * points.y[i] - a * points.x[i]) / c);
-        }
-        console.log(points);
-        return points;
+        console.log(plane);
     }
 
     plot(vectors, planes) {
@@ -26,7 +13,7 @@ class Plotter {
         }
         for (const plane of planes) {
             const points = Plotter.#calculate_plane_points(plane);
-            Plotly.newPlot(this.#div, [points], Plotter.layout);
+            // Plotly.newPlot(this.#div, [points]);
         }
     }
 }

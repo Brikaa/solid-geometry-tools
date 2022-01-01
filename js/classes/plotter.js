@@ -44,8 +44,11 @@ class Plotter {
         for (let i = 0; i < planes.length; ++i) {
             const plane = planes[i];
             const plane_points = Plotter.#calculate_plane_points(plane);
-            plane_points.type = 'scatter3d';
+            plane_points.type = 'mesh3d';
             plane_points.name = `P${i + 1}`;
+            plane_points.i = [0, 1, 2];
+            plane_points.j = [1, 2, 3];
+            plane_points.k = [2, 3, 0];
             planes_corners.push(plane_points);
         }
         console.log(planes_corners);

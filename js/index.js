@@ -18,7 +18,7 @@
             plotter.plot(line_plane_area.lines, planes);
         } catch (e) {
             if (e.cause === 'empty_line_or_plane') {
-                alert(`Invalid lines/planes`);
+                alert(`Invalid planes`);
             } else {
                 alert('An error has occurred while drawing');
                 console.log(e);

@@ -1,27 +1,28 @@
 (function () {
-    const vector_plane_area = new VectorPlaneAreas('vector-input', 'plane-input');
+    const line_plane_area = new LinePlaneAreas('line-input', 'plane-input');
     const plotter = new Plotter('plotly-canvas');
     document
-        .getElementById('vector-add-button')
-        .addEventListener('click', () => vector_plane_area.add_vector());
+        .getElementById('line-add-button')
+        .addEventListener('click', () => line_plane_area.add_line());
     document
         .getElementById('plane-add-button')
-        .addEventListener('click', () => vector_plane_area.add_plane());
+        .addEventListener('click', () => line_plane_area.add_plane());
     document
-        .getElementById('vector-remove-button')
-        .addEventListener('click', () => vector_plane_area.remove_vector());
+        .getElementById('line-remove-button')
+        .addEventListener('click', () => line_plane_area.remove_line());
     document
         .getElementById('plane-remove-button')
-        .addEventListener('click', () => vector_plane_area.remove_plane());
+        .addEventListener('click', () => line_plane_area.remove_plane());
     document
         .getElementById('clear-button')
-        .addEventListener('click', () => vector_plane_area.clear());
+        .addEventListener('click', () => line_plane_area.clear());
     document.getElementById('draw-button').addEventListener('click', () => {
+        const planes = line_plane_area.planes.filter(x => MathUtil.validate_plane(x))
         try {
-            plotter.plot(vector_plane_area.vectors, vector_plane_area.planes);
+            plotter.plot(line_plane_area.lines, planes);
         } catch (e) {
-            if (e.cause === 'empty_vector_or_plane') {
-                alert(`Invalid vectors/planes`);
+            if (e.cause === 'empty_line_or_plane') {
+                alert(`Invalid lines/planes`);
             } else {
                 alert('An error has occurred while drawing');
                 console.log(e);

@@ -7,9 +7,9 @@ class Plotter {
         console.log(plane);
     }
 
-    plot(vectors, planes) {
-        if (vectors.length == 0 && planes.length == 0) {
-            throw new Error('vectors and planes are empty', { cause: 'empty_vector_or_plane' });
+    plot(lines, planes) {
+        if (lines.length == 0 && planes.length == 0) {
+            throw new Error('lines and planes are empty', { cause: 'empty_line_or_plane' });
         }
         for (const plane of planes) {
             const points = Plotter.#calculate_plane_points(plane);

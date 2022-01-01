@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="css/global.css">
     <script src="js/external/plotly-2.8.3.min.js" defer></script>
     <script src="js/helpers/util.js" defer></script>
-    <script src="js/classes/vector_plane_areas.js" defer></script>
+    <script src="js/helpers/math_util.js" defer></script>
+    <script src="js/classes/line_plane_areas.js" defer></script>
     <script src="js/classes/plotter.js" defer></script>
     <script src="js/index.js" defer></script>
     <title>Solid Geometry Tools</title>
@@ -21,14 +22,14 @@
     <h1>Solid Geometry Tools</h1>
 
     <div class="control-buttons">
-        <button id="vector-add-button" class="primary-button">Add a vector</button>
+        <button id="line-add-button" class="primary-button">Add a line</button>
         <button id="plane-add-button" class="primary-button">Add a plane</button>
-        <button id="vector-remove-button" class="primary-button">Remove a vector</button>
+        <button id="line-remove-button" class="primary-button">Remove a line</button>
         <button id="plane-remove-button" class="primary-button">Remove a plane</button>
         <button id="draw-button" class="primary-button">Draw</button>
         <button id="clear-button" class="primary-button">Clear</button>
     </div>
-    <div id="vector-input" class="input-data"></div>
+    <div id="line-input" class="input-data"></div>
     <div id="plane-input" class="input-data"></div>
     <div id="plotly-canvas"></div>
     <div class="footer">

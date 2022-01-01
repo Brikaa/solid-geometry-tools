@@ -1,36 +1,36 @@
-class VectorPlaneAreas {
+class LinePlaneAreas {
     // States
     #next_plane;
-    #next_vector;
-    #vector_inputs;
+    #next_line;
+    #line_inputs;
     #plane_inputs;
 
-    constructor(vector_div_id, plane_div_id) {
-        this.vector_div = document.getElementById(vector_div_id);
+    constructor(line_div_id, plane_div_id) {
+        this.line_div = document.getElementById(line_div_id);
         this.plane_div = document.getElementById(plane_div_id);
         this.#next_plane = 0;
-        this.#next_vector = 0;
-        this.#vector_inputs = [];
+        this.#next_line = 0;
+        this.#line_inputs = [];
         this.#plane_inputs = [];
     }
 
-    add_vector() {
+    add_line() {
         const paragraph = Util.add_paragraph(
-            `V<sub>${this.#next_vector + 1}</sub> =
-            (<input name="x-vector" id="x-vector${
-                this.#next_vector
+            `V<sub>${this.#next_line + 1}</sub> =
+            (<input name="x-line" id="x-line${
+                this.#next_line
             }" class="number-input" type="number">,
-            <input name="y-vector" id="y-vector${
-                this.#next_vector
+            <input name="y-line" id="y-line${
+                this.#next_line
             }" class="number-input" type="number">,
-            <input name="z-vector" id="z-vector${
-                this.#next_vector
+            <input name="z-line" id="z-line${
+                this.#next_line
             }" class="number-input" type="number">)`,
-            this.vector_div,
-            `vector${this.#next_vector}`
+            this.line_div,
+            `line${this.#next_line}`
         );
-        this.#vector_inputs.push(paragraph.getElementsByTagName('input'));
-        ++this.#next_vector;
+        this.#line_inputs.push(paragraph.getElementsByTagName('input'));
+        ++this.#next_line;
     }
     add_plane() {
         const paragraph = Util.add_paragraph(
@@ -52,13 +52,13 @@ class VectorPlaneAreas {
         this.#plane_inputs.push(paragraph.getElementsByTagName('input'));
         ++this.#next_plane;
     }
-    remove_vector() {
-        if (this.#next_vector === 0) {
+    remove_line() {
+        if (this.#next_line === 0) {
             return;
         }
-        document.getElementById(`vector${this.#next_vector - 1}`).remove();
-        this.#vector_inputs.pop();
-        --this.#next_vector;
+        document.getElementById(`line${this.#next_line - 1}`).remove();
+        this.#line_inputs.pop();
+        --this.#next_line;
     }
     remove_plane() {
         if (this.#next_plane === 0) {
@@ -69,16 +69,16 @@ class VectorPlaneAreas {
         --this.#next_plane;
     }
     clear() {
-        this.vector_div.innerHTML = '';
+        this.line_div.innerHTML = '';
         this.plane_div.innerHTML = '';
         this.#next_plane = 0;
-        this.#next_vector = 0;
-        this.#vector_inputs = [];
+        this.#next_line = 0;
+        this.#line_inputs = [];
         this.#plane_inputs = [];
     }
 
-    get vectors() {
-        return Util.values_from_2d_inputs_array(this.#vector_inputs, true);
+    get lines() {
+        return Util.values_from_2d_inputs_array(this.#line_inputs, true);
     }
     get planes() {
         return Util.values_from_2d_inputs_array(this.#plane_inputs, true);

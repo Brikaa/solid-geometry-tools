@@ -15,11 +15,15 @@ class Util {
             const sub_component = [];
             for (const i of input) {
                 const value = i.value;
-                valid = !only_numerical || (value !== '' && !isNaN(value));
+                if (!only_numerical) {
+                    sub_component.push(i.value);
+                    continue;
+                }
+                valid = value !== '' && !isNaN(value);
                 if (!valid) {
                     break;
                 }
-                sub_component.push((only_numerical && parseFloat(i.value)) || i.value);
+                sub_component.push(parseFloat(i.value));
             }
             if (!valid) {
                 continue;
